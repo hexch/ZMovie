@@ -10,16 +10,16 @@ import 'package:zmovies/data/model/api_config.dart';
 
 /// IF of local storage service
 abstract class LocalInfoRepository {
-  Future saveAppSettings(AppSettings value);
+  Future<bool> saveAppSettings(AppSettings value);
   Future<AppSettings?> loadAppSettings();
-  Future saveApiConfig(ApiConfig value);
+  Future<bool> saveApiConfig(ApiConfig value);
   Future<ApiConfig?> loadApiConfig();
-  Future saveContries(List<ApiConfigCountry> value);
+  Future<bool> saveContries(List<ApiConfigCountry> value);
   Future<List<ApiConfigCountry>?> loadCountries();
 
-  Future saveLanguages(List<ApiConfigLanguage> value);
+  Future<bool> saveLanguages(List<ApiConfigLanguage> value);
   Future<List<ApiConfigLanguage>?> loadLanguages();
-  Future saveTimeZones(List<ApiConfigTimeZone> value);
+  Future<bool> saveTimeZones(List<ApiConfigTimeZone> value);
   Future<List<ApiConfigTimeZone>?> loadTimeZones();
 }
 
@@ -28,9 +28,9 @@ class LocalInfoRepositoryImpl extends LocalInfoRepository {
       : _dataSource = dataSource ?? LocalInfoDataSource();
 
   @override
-  Future saveAppSettings(AppSettings value) async {
+  Future<bool> saveAppSettings(AppSettings value) async {
     final jsonString = json.encode(value);
-    await _dataSource.save(_kApiConfig, value: jsonString);
+    return await _dataSource.save(_kAppSettings, value: jsonString);
   }
 
   @override
@@ -44,9 +44,9 @@ class LocalInfoRepositoryImpl extends LocalInfoRepository {
   }
 
   @override
-  Future saveApiConfig(ApiConfig value) async {
+  Future<bool> saveApiConfig(ApiConfig value) async {
     final jsonString = json.encode(value);
-    await _dataSource.save(_kApiConfig, value: jsonString);
+    return await _dataSource.save(_kApiConfig, value: jsonString);
   }
 
   @override
@@ -60,9 +60,9 @@ class LocalInfoRepositoryImpl extends LocalInfoRepository {
   }
 
   @override
-  Future saveContries(List<ApiConfigCountry> value) async {
+  Future<bool> saveContries(List<ApiConfigCountry> value) async {
     final jsonString = json.encode(value);
-    await _dataSource.save(_kCountries, value: jsonString);
+    return await _dataSource.save(_kCountries, value: jsonString);
   }
 
   @override
@@ -77,9 +77,9 @@ class LocalInfoRepositoryImpl extends LocalInfoRepository {
   }
 
   @override
-  Future saveLanguages(List<ApiConfigLanguage> value) async {
+  Future<bool> saveLanguages(List<ApiConfigLanguage> value) async {
     final jsonString = json.encode(value);
-    await _dataSource.save(_kLanguages, value: jsonString);
+    return await _dataSource.save(_kLanguages, value: jsonString);
   }
 
   @override
@@ -94,9 +94,9 @@ class LocalInfoRepositoryImpl extends LocalInfoRepository {
   }
 
   @override
-  Future saveTimeZones(List<ApiConfigTimeZone> value) async {
+  Future<bool> saveTimeZones(List<ApiConfigTimeZone> value) async {
     final jsonString = json.encode(value);
-    await _dataSource.save(_kTimezones, value: jsonString);
+    return await _dataSource.save(_kTimezones, value: jsonString);
   }
 
   @override

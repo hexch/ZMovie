@@ -15,3 +15,9 @@ clean:
 .PHONY: analyze
 analyze:
 	fvm flutter analyze
+
+.PHONY: test
+test:
+	fvm flutter test --coverage
+	lcov --remove coverage/lcov.info "lib/data/datasource/remote/*.g.dart" "lib/data/model/*" -o coverage/lcov_ex.info
+	genhtml coverage/lcov_ex.info -o coverage/html

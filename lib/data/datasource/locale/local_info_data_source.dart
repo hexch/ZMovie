@@ -22,15 +22,6 @@ class LocalInfoDataSource {
   /// Return [T]value.Or null if not exist.
   Future<T?> load<T>(String key) async {
     final prefs = await SharedPreferences.getInstance();
-    if (T is String) {
-      return prefs.getString(key) as T?;
-    } else if (T is bool) {
-      return prefs.getBool(key) as T?;
-    } else if (T is int) {
-      return prefs.getInt(key) as T?;
-    } else if (T is double) {
-      return prefs.getDouble(key) as T?;
-    }
-    return null;
+    return prefs.get(key) as T?;
   }
 }

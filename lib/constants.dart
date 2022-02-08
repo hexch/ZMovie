@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:zmovies/flavor.dart';
 
 /// Constants defination.
@@ -61,6 +62,15 @@ class Constants {
       apiKey: '',
     );
   }
+
+  @visibleForTesting
+  factory Constants.mock(Flavor flavor, String baseUrl, String apiKey) =>
+      _instance = Constants(
+        flavor: flavor,
+        baseUrl: baseUrl,
+        apiKey: apiKey,
+      );
+
   static Constants? _instance;
 
   final Flavor flavor;
