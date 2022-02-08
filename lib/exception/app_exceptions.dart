@@ -1,0 +1,1 @@
+class ApiKeyUnsetException implements Exception {}
