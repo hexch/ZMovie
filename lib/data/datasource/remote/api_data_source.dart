@@ -20,6 +20,7 @@ import 'app_dio.dart';
 
 part 'api_data_source.g.dart';
 
+/// Data source of remote service.
 @RestApi()
 abstract class ApiDataSource {
   factory ApiDataSource({Dio? dio}) =>

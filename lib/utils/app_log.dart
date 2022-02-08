@@ -1,5 +1,10 @@
 import 'dart:developer' as developer;
 
+/// Logging mixin.
+/// Print log with this mixin.
+///
+/// output example:
+/// [Class] [Function](TAG) message
 mixin AppLog {
   void log(String msg, {String? func, String? tag, Object? error}) =>
       developer.log(

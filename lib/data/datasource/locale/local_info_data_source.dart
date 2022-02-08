@@ -1,6 +1,9 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
+/// Data source of local storage
 class LocalInfoDataSource {
+  /// Save the [T]value of [String]key to local storage
+  /// Return True if save successfully
   Future<bool> save<T>(String key, {required T value}) async {
     final prefs = await SharedPreferences.getInstance();
     if (value is String) {
@@ -15,6 +18,8 @@ class LocalInfoDataSource {
     return false;
   }
 
+  /// Load the [T]value of [String]key from local Storage
+  /// Return [T]value.Or null if not exist.
   Future<T?> load<T>(String key) async {
     final prefs = await SharedPreferences.getInstance();
     if (T is String) {

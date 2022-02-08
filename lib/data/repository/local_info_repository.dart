@@ -8,6 +8,7 @@ import 'package:zmovies/extension/app_extensions.dart';
 import 'package:zmovies/data/datasource/locale/local_info_data_source.dart';
 import 'package:zmovies/data/model/api_config.dart';
 
+/// IF of local storage service
 abstract class LocalInfoRepository {
   Future saveAppSettings(AppSettings value);
   Future<AppSettings?> loadAppSettings();

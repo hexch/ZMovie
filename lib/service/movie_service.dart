@@ -18,12 +18,17 @@ import 'package:zmovies/data/model/movie_upcoming_result.dart';
 import 'package:zmovies/data/repository/api_repository.dart';
 import 'package:zmovies/getx/app_service.dart';
 
+/// Movie Service
+/// Control global config and global models ,etc.
 class MovieService extends AppService {
+  /// Instance of this class ,load by Get dependencies.
   static MovieService get me => Get.find();
 
-  void config(String region, String langugae) =>
-      _apiRepository.config(region, langugae);
+  /// Update the configurations(region,language) of remote service.
+  void config(String region, String language) =>
+      _apiRepository.config(region, language);
 
+  /// Fetch configuration from remote.
   Future fetchConfiguration() async {
     const func = 'fetchConfiguration';
     logIn(func);
@@ -38,6 +43,7 @@ class MovieService extends AppService {
     logOut(func);
   }
 
+  /// Fetch movie genres from remote.
   Future<List<MovieGenre>> fetchMovieGenres() async {
     const func = 'fetchMovieGenres';
     logIn(func);
@@ -47,6 +53,7 @@ class MovieService extends AppService {
     return _movieGenreList;
   }
 
+  /// Fetch latest movie from remote.
   Future<MovieLatest?> fetchMovieLatest() async {
     const func = 'fetchMovieLatest';
     logIn(func);
@@ -55,6 +62,7 @@ class MovieService extends AppService {
     return _movieLatest;
   }
 
+  /// Fetch nowplaying movie from remote.
   Future<List<MovieNowPlayingResult>> fetchMovieNowPlaying() async {
     const func = 'fetchMovieNowPlaying';
     logIn(func);
@@ -70,6 +78,7 @@ class MovieService extends AppService {
     return movieNowPlayingResults;
   }
 
+  /// Fetch popular movie from remote.
   Future<List<MoviePopularResult>> fetchMoviePopular() async {
     const func = 'fetchMoviePopular';
     logIn(func);
@@ -85,6 +94,7 @@ class MovieService extends AppService {
     return moviePopularResults;
   }
 
+  /// Fetch top rated movie from remote.
   Future<List<MovieTopRatedResult>> fetchMovieTopRated() async {
     const func = 'fetchMoviePopular';
     logIn(func);
@@ -100,6 +110,7 @@ class MovieService extends AppService {
     return movieTopRatedResults;
   }
 
+  /// Fetch upcomming movie from remote.
   Future<List<MovieUpcomingResult>> fetchMovieUpcoming() async {
     const func = 'fetchMoviePopular';
     logIn(func);
@@ -115,30 +126,46 @@ class MovieService extends AppService {
     return movieUpcomingResults;
   }
 
+  /// The prefix of the backdrop image url.
   // TODO config this in settings page
   String? get backdropPrefix => apiConfig == null
       ? null
       : '${apiConfig!.secureBaseUrl}${apiConfig!.backdropSizes.lastOrNull ?? ''}';
+
+  /// The prefix of the poster image url.
   // TODO config this in settings page
   String? get posterPrefix => apiConfig == null
       ? null
-      : '${apiConfig!.secureBaseUrl}${apiConfig!.popularSizes.lastOrNull ?? ''}';
+      : '${apiConfig!.secureBaseUrl}${apiConfig!.posterSizes.lastOrNull ?? ''}';
+
+  /// The prefix of the profile image url.
   // TODO config this in settings page
   String? get profilePrefix => apiConfig == null
       ? null
       : '${apiConfig!.secureBaseUrl}${apiConfig!.profileSizes.lastOrNull ?? ''}';
+
+  /// [MovieLatest] getter.
   MovieLatest? get movieLatest => _movieLatest;
+
+  /// [MovieNowPlayingResult] array getter.
   List<MovieNowPlayingResult> get movieNowPlayingResults => _movieNowPlayingList
       .map((e) => e.results ?? [])
       .expand((e) => e)
       .toList();
+
+  /// [MoviePopularResult] array getter.
   List<MoviePopularResult> get moviePopularResults =>
       _moviePopularList.map((e) => e.results ?? []).expand((e) => e).toList();
+
+  /// [MovieTopRatedResult] array getter.
   List<MovieTopRatedResult> get movieTopRatedResults =>
       _movieTopRatedList.map((e) => e.results ?? []).expand((e) => e).toList();
+
+  /// [MovieUpcomingResult] array getter.
   List<MovieUpcomingResult> get movieUpcomingResults =>
       _movieUpcomingList.map((e) => e.results ?? []).expand((e) => e).toList();
 
+  /// (Getter of)The current nowplaying movie page.
   int get nextPageOfMovieNowPlaying =>
       _movieNowPlayingList.where((e) => e.page != null).isEmpty
           ? 1
@@ -148,6 +175,8 @@ class MovieService extends AppService {
                       .reduce((a, b) => a! > b! ? a : b) ??
                   0) +
               1;
+
+  /// (Getter of)The current popular movie page.
   int get nextPageOfMoviePopular =>
       _moviePopularList.where((e) => e.page != null).isEmpty
           ? 1
@@ -157,6 +186,8 @@ class MovieService extends AppService {
                       .reduce((a, b) => a! > b! ? a : b) ??
                   0) +
               1;
+
+  /// (Getter of)The current top rated movie page.
   int get nextPageOfMovieTopRated =>
       _movieTopRatedList.where((e) => e.page != null).isEmpty
           ? 1
@@ -166,6 +197,8 @@ class MovieService extends AppService {
                       .reduce((a, b) => a! > b! ? a : b) ??
                   0) +
               1;
+
+  /// (Getter of)The current upcoming movie page.
   int get nextPageOfMovieUpcomming =>
       _movieUpcomingList.where((e) => e.page != null).isEmpty
           ? 1
@@ -175,6 +208,8 @@ class MovieService extends AppService {
                       .reduce((a, b) => a! > b! ? a : b) ??
                   0) +
               1;
+
+  /// [MovieGenre] array getter.
   List<MovieGenre> get movieGenreList => _movieGenreList;
 
   ApiConfig? apiConfig;

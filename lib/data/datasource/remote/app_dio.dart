@@ -2,6 +2,7 @@ import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:zmovies/constants.dart';
 
+/// The global [Dio] singleton instance.
 class AppDio with DioMixin implements Dio {
   AppDio._([BaseOptions? options]) {
     final constants = Constants.of();

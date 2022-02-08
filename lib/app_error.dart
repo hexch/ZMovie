@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 
+/// Error Type
 enum AppErrorType {
   apiKeyNotSet,
   network,
@@ -13,6 +14,7 @@ enum AppErrorType {
   unknown,
 }
 
+/// Error.
 class AppError {
   late String message;
   late AppErrorType type;

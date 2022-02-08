@@ -1,15 +1,24 @@
 import 'package:zmovies/flavor.dart';
 
+/// Constants defination.
 class Constants {
   const Constants({
+    // Flavor
     required this.flavor,
+    // Base url of remote service
     required this.baseUrl,
+    // Api key of remote service
     required this.apiKey,
+    // Network configuration
     this.connectTimeout = 3000,
+    // Network configuration
     this.receiveTimeout = 3000,
+    // Network configuration
     this.sendTimeout = 3000,
   });
 
+  /// Factory constructor.
+  /// Use this to get an instance of Constaants.
   factory Constants.of() {
     if (_instance != null) return _instance!;
     final flavor = currentFlavor;

@@ -16,8 +16,10 @@ import 'package:zmovies/data/model/movie_top_rated.dart';
 import 'package:zmovies/data/model/movie_upcoming.dart';
 import 'package:zmovies/exception/app_exceptions.dart';
 
+/// IF of remote api service
 abstract class ApiRepository {
   void config(String region, String language);
+
   Future<MovieGenreList> getMovieGenres();
   Future<MovieLatest> getMovieLatest();
   Future<MovieNowPlaying> getMovieNowPlaying(int page);

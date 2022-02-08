@@ -7,13 +7,17 @@ import 'package:zmovies/ui/screen/home_page.dart';
 import 'package:zmovies/ui/screen/movie_detail_page.dart';
 import 'package:zmovies/ui/screen/splash_page.dart';
 
+/// Routes defination.
 enum AppRoute {
   splash,
   home,
   detail,
 }
+
+/// Routes array.
 final gAppRoutes = [
   GetPage(
+    //splash screen
     name: AppRoute.splash.path,
     page: AppRoute.splash.pageBuilder,
     binding: AppRoute.splash.appBindings.first,
@@ -21,12 +25,14 @@ final gAppRoutes = [
     preventDuplicates: true,
     children: [
       GetPage(
+          //Home screen
           name: AppRoute.home.path,
           page: AppRoute.home.pageBuilder,
           bindings: [AppBinding(() => HomeController())],
           preventDuplicates: true,
           children: [
             GetPage(
+              //Movie detail screen
               name: AppRoute.detail.path,
               page: AppRoute.detail.pageBuilder,
               bindings: [AppBinding(() => MovieDetailController())],
@@ -37,8 +43,13 @@ final gAppRoutes = [
 ];
 
 extension AppRouteExtension on AppRoute {
+  /// Path of route.
   String get path => _pathMap[this]!;
+
+  /// [GetPageBuilder] of route.
   GetPageBuilder get pageBuilder => _getPageBuilderMap[this]!;
+
+  /// [Bindings]array of route.
   List<Bindings> get appBindings => _getAppBindingMap[this]!;
 
   static final Map<AppRoute, GetPageBuilder> _getPageBuilderMap = {
