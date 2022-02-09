@@ -10,6 +10,7 @@ class SplashController extends AppController {
     super.onReady();
     const func = 'onReady';
     logIn(func);
+    fadein(true);
     _process();
     logOut(func);
   }
@@ -34,7 +35,8 @@ class SplashController extends AppController {
     logOut(func);
   }
 
-  static const _kSplashDuration = Duration(seconds: 1);
+  var fadein = false.obs;
+  static const _kSplashDuration = Duration(seconds: 2);
 }
 
 extension SplashControllerTransation on SplashController {

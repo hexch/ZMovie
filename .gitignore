@@ -49,6 +49,7 @@ app.*.map.json
 lib/data/model/*.freezed.dart
 lib/data/model/*.g.dart
 lib/data/datasource/remote/*.g.dart
+lib/gen/*
 
 # unit test report
 coverage/*

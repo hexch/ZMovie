@@ -20,9 +20,11 @@ final gAppRoutes = [
     //splash screen
     name: AppRoute.splash.path,
     page: AppRoute.splash.pageBuilder,
-    binding: AppRoute.splash.appBindings.first,
+    binding: AppBinding(() => SplashController(), false),
     participatesInRootNavigator: true,
     preventDuplicates: true,
+    transition: Transition.fadeIn,
+    transitionDuration: Duration(seconds: 1),
     children: [
       GetPage(
           //Home screen
@@ -30,6 +32,7 @@ final gAppRoutes = [
           page: AppRoute.home.pageBuilder,
           bindings: [AppBinding(() => HomeController())],
           preventDuplicates: true,
+          transition: Transition.zoom,
           children: [
             GetPage(
               //Movie detail screen
