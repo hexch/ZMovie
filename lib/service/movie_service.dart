@@ -130,19 +130,19 @@ class MovieService extends AppService {
   // TODO config this in settings page
   String? get backdropPrefix => apiConfig == null
       ? null
-      : '${apiConfig!.secureBaseUrl}${apiConfig!.backdropSizes.lastOrNull ?? ''}';
+      : '${apiConfig!.secureBaseUrl}${apiConfig!.backdropSizes[2]}';
 
   /// The prefix of the poster image url.
   // TODO config this in settings page
   String? get posterPrefix => apiConfig == null
       ? null
-      : '${apiConfig!.secureBaseUrl}${apiConfig!.posterSizes.lastOrNull ?? ''}';
+      : '${apiConfig!.secureBaseUrl}${apiConfig!.posterSizes[2]}';
 
   /// The prefix of the profile image url.
   // TODO config this in settings page
   String? get profilePrefix => apiConfig == null
       ? null
-      : '${apiConfig!.secureBaseUrl}${apiConfig!.profileSizes.lastOrNull ?? ''}';
+      : '${apiConfig!.secureBaseUrl}${apiConfig!.profileSizes[2]}';
 
   /// [MovieLatest] getter.
   MovieLatest? get movieLatest => _movieLatest;

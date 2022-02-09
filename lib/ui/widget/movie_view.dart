@@ -6,20 +6,22 @@ class MovieView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.grey.shade100,
-        borderRadius: BorderRadius.all(
-          Radius.circular(8),
-        ),
-      ),
-      child: imageUrl != null
-          ? CachedNetworkImage(
-              imageUrl: imageUrl!,
-            )
-          : Container(),
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-    );
+    return imageUrl != null
+        ? CachedNetworkImage(
+            imageUrl: imageUrl!,
+            imageBuilder: (context, provider) => Container(
+              decoration: BoxDecoration(
+                color: Colors.grey.shade100,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(8),
+                ),
+              ),
+              child: Image(image: provider, fit: BoxFit.cover),
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+            ),
+            useOldImageOnUrlChange: true,
+          )
+        : Container();
   }
 
   final String? imageUrl;

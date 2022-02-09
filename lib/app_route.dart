@@ -36,6 +36,9 @@ final gAppRoutes = [
               name: AppRoute.detail.path,
               page: AppRoute.detail.pageBuilder,
               bindings: [AppBinding(() => MovieDetailController())],
+              preventDuplicates: false,
+              transition: Transition.downToUp,
+              fullscreenDialog: true,
             )
           ]),
     ],

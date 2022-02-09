@@ -20,7 +20,19 @@ class HomeController extends AppController {
         .then((value) => value
             .map((e) => e.movieInfo(backdropPrefix, posterPrefix))
             .toList())
-        .then((value) => movieNowPlayingList(value));
+        .then((value) {
+      if (value.isEmpty) return;
+      movieMain(value[0]);
+      final genres = MovieService.me.movieGenreList
+          .where((e) => value[0].genreIds.contains(e.id))
+          .map((e) => e.name)
+          .where((e) => e != null)
+          .map((e) => e!)
+          .toList();
+      movieMainGenres(genres);
+      if (value.length < 2) return;
+      movieNowPlayingList(value.sublist(1));
+    });
     MovieService.me
         .fetchMoviePopular()
         .then((value) => value
@@ -42,6 +54,8 @@ class HomeController extends AppController {
     logOut(func);
   }
 
+  var movieMain = Rx<MovieInfo?>(null);
+  final movieMainGenres = <String>[].obs;
   // latest movie sometimes not show,and changed continuously
   //final movieLatestList = <MovieLatest>[].obs;
   final movieNowPlayingList = <MovieInfo>[].obs;

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:zmovies/app_route.dart';
 import 'package:zmovies/data/model/movie_credit.dart';
 import 'package:zmovies/data/model/movie_detail.dart';
 import 'package:zmovies/data/model/movie_genre.dart';
@@ -127,4 +128,16 @@ class MovieDetailController extends AppController {
   var movieCrewList = <PeopleModel>[].obs;
   var similarMovies = <MovieInfo>[].obs;
   final ApiRepository _apiRepository = Get.find();
+}
+
+extension MovieDetailControllerTransition on MovieDetailController {
+  String get tag => 'TRANS';
+  void gotoDetail(int movieId) {
+    const func = 'gotoDetail';
+    logIn(func, tag);
+    Get.toNamed(AppRoute.home.path + AppRoute.detail.path, arguments: movieId);
+    logOut(func, tag);
+  }
+
+  void onClickMovieSimilar(int index) => gotoDetail(similarMovies[index].id);
 }

@@ -1,4 +1,3 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:zmovies/getx/app_page.dart';
@@ -16,27 +15,28 @@ class HomePage extends AppPage<HomeController> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Obx(() => MovieMainView(
-                movieInfo: controller.movieNowPlayingList.firstOrNull,
+                movieInfo: controller.movieMain.value,
+                genres: controller.movieMainGenres,
               )),
           _title('movie_now_playing_title'.tr),
           Obx(() => MovieHorizontalListView(
                 movies: controller.movieNowPlayingList.toList(),
                 onClick: (i) => controller.onClickMovieNowPlaying(i),
               )),
-          _title('movie_popular_title'.tr),
+          _title('movie_upcoming_title'.tr),
           Obx(() => MovieHorizontalListView(
-                movies: controller.moviePopularList.toList(),
-                onClick: (i) => controller.onClickMoviePopular(i),
+                movies: controller.movieUpcomingList.toList(),
+                onClick: (i) => controller.onClickMovieUpcoming(i),
               )),
           _title('movie_top_rated_title'.tr),
           Obx(() => MovieHorizontalListView(
                 movies: controller.movieTopRatedList.toList(),
                 onClick: (i) => controller.onClickMovieTopRated(i),
               )),
-          _title('movie_upcoming_title'.tr),
+          _title('movie_popular_title'.tr),
           Obx(() => MovieHorizontalListView(
-                movies: controller.movieUpcomingList.toList(),
-                onClick: (i) => controller.onClickMovieUpcoming(i),
+                movies: controller.moviePopularList.toList(),
+                onClick: (i) => controller.onClickMoviePopular(i),
               )),
         ],
       ),
