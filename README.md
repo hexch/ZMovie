@@ -30,7 +30,7 @@ The main purpose is to show how to make a real world app using Flutter,start wit
 ![image](.images/data_flow.svg)
 
 It is a MVVM-like architecture.<br/>
-Here is the basic principle for editing each layer:
+Here are some basic principles for editing each layer:
 - UI <br/>
   - draw ui
   - control ui data & business logic 
