@@ -64,7 +64,10 @@ class MovieDetailPage extends AppPage<MovieDetailController> {
                 )),
         ),
         actions: [
-          IconButton(onPressed: () => Get.back(), icon: Icon(Icons.close))
+          IconButton(
+            onPressed: () => Get.back(),
+            icon: Icon(Icons.close_sharp, color: Colors.grey),
+          )
         ],
       );
   Widget _movieTitle(MovieDetailController controller) => Obx(() => Text(
@@ -207,7 +210,7 @@ class MovieDetailPage extends AppPage<MovieDetailController> {
                 height: 150,
                 child: MovieHorizontalListView(
                   movies: controller.similarMovies.toList(),
-                  onClick: (i) {},
+                  onClick: (i) => controller.onClickMovieSimilar(i),
                 ),
               )),
       ];
